@@ -1,3 +1,16 @@
+const paintings = [];
+const getPaintings = async function () {
+    const res = await fetch("https://gist.githubusercontent.com/gerardguydavis/d088caebf622a2120676e2b6369a2fd5/raw/f134888bb43ce5e08be06ea5e918bc138d389a11/data.json");
+    const paintingsData = await res.json();
+    for (let painting of paintingsData) {
+        paintings.push(painting);
+    }
+    console.log(paintings);
+    /*showPaintings(paintings);*/
+}
+
+getPaintings();
+
 const captionName = document.createElement('h2');
 const year = document.createElement('div');
 const description = document.createElement('p');
@@ -20,7 +33,7 @@ smallHero.className = 'small-hero';
 largeHero.className = 'large-hero';
 galleryImage.className = 'gallery-image';
 
-captionName.innerText = `${painting.name}`;
+/*captionName.innerText = `${painting.name}`;
 year.innerText = `${painting.year}`;
 description.innerText = `${painting.description}`;
 source.innerText = `Go to source`;
@@ -31,4 +44,4 @@ artistImage.innerHTML = `<img src='${painting.artist.image}' alt='${painting.art
 thumbnail.innerHTML = `<img src='${painting.images.thumbnail}' alt='${painting.name} thumbnail' />`;
 smallHero.innerHTML = `<img src='${painting.images.hero.small}' alt='${painting.name} by ${painting.artist.name}' />`
 largeHero.innerHTML = `<img src='${painting.images.hero.large}' alt='${painting.name} by ${painting.artist.name}' />`
-galleryImage.innerHTML = `<img src='${painting.images.gallery}' alt='${painting.name} by ${painting.artist.name}' />`
+galleryImage.innerHTML = `<img src='${painting.images.gallery}' alt='${painting.name} by ${painting.artist.name}' />`*/
