@@ -23,6 +23,7 @@ function checkWidth(tabletWidth) {
 function showPaintings(paintings) {
     for (let painting of (paintings)) {
         const slide = document.createElement('div');
+        const thumbnailInfo = document.createElement('div');
         const largeNames = document.createElement('div');
         const smallNames = document.createElement('div');
         const info = document.createElement('div');
@@ -43,6 +44,7 @@ function showPaintings(paintings) {
         const galleryImage = document.createElement('figure');
 
         slide.className = 'slide';
+        thumbnailInfo.className = 'thumbnail-info';
         largeNames.className = 'large-names';
         smallNames.className = 'small-names';
         info.className = 'painting-info';
@@ -57,7 +59,7 @@ function showPaintings(paintings) {
         artistNameLarge.className = 'artist-name-l';
         artistNameSmall.className = 'artist-name-s';
         artistImage.className = 'artist-image';
-        thumbnail.className = 'thumbnail';
+        thumbnail.className = 'thumbnail-wrap';
         smallHero.className = 'small-hero';
         largeHero.className = 'large-hero';
         galleryImage.className = 'gallery-image';
@@ -74,12 +76,13 @@ function showPaintings(paintings) {
         artistNameLarge.innerText = `${painting.artist.name}`;
         artistNameSmall.innerText = `${painting.artist.name}`;
         artistImage.innerHTML = `<img src='${painting.artist.image}' alt='${painting.artist.name} portrait' />`;
-        thumbnail.style.background = `url(${painting.images.thumbnail})`;
-        smallHero.innerHTML = `<img src='${painting.images.hero.small}' alt='${painting.name} by ${painting.artist.name}' />`
-        largeHero.innerHTML = `<img src='${painting.images.hero.large}' alt='${painting.name} by ${painting.artist.name}' />`
-        galleryImage.innerHTML = `<img src='${painting.images.gallery}' alt='${painting.name} by ${painting.artist.name}' />`
+        thumbnail.innerHTML = `<img src='${painting.images.thumbnail}' alt='${painting.name} by ${painting.artist.name}' />`;
+        smallHero.innerHTML = `<img src='${painting.images.hero.small}' alt='${painting.name} by ${painting.artist.name}' />`;
+        largeHero.innerHTML = `<img src='${painting.images.hero.large}' alt='${painting.name} by ${painting.artist.name}' />`;
+        galleryImage.innerHTML = `<img src='${painting.images.gallery}' alt='${painting.name} by ${painting.artist.name}' />`;
 
-        thumbnail.append(paintingName, artistName);
+        thumbnailInfo.append(paintingName, artistName);
+        thumbnail.append(thumbnailInfo);
         thumbnailGallery.append(thumbnail);
         info.append(year, description, source);
         largeNames.append(largeName, artistNameLarge);
@@ -93,5 +96,4 @@ function showPaintings(paintings) {
 }
 
 getPaintings();
-console.log(slides);
 document.onresize = checkWidth(tabletWidth);
